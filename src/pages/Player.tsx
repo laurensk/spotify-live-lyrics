@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import CustomButton from "../components/CustomButton";
 import Header from "../components/Header";
 import LargeText from "../components/LargeText";
+import { SongUtils } from "../utils/SongUtils";
 
 interface StateType {
   song: any | undefined;
@@ -39,6 +40,12 @@ class Player extends React.Component<any, StateType> {
     return (
       <Container>
         <Header title={this.state.song ? this.state.song.item.name : "It's silent..."} />
+        {this.state.song && (
+          <div style={{ marginTop: -15 }}>
+            <LargeText text={SongUtils.getArtists(this.state.song.item.artists)} />
+          </div>
+        )}
+
         {/* <LargeText text="Welcome to Spotify Live Lyrics." />
         <br />
         <LargeText

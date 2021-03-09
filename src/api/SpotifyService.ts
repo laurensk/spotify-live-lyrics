@@ -38,7 +38,7 @@ export class SpotifyService {
     const res = await axios.get("https://api.spotify.com/v1/me/player/currently-playing", {
       headers: { Authorization: "Bearer " + AuthUtils.getToken() },
     });
-    if (res.status != 200) return null;
+    if (res.status !== 200) return null;
     return res.data;
   }
 }
