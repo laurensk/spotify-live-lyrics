@@ -2,6 +2,7 @@ import React from "react";
 import { AuthUtils } from "./utils/AuthUtils";
 import Player from "./pages/Player";
 import Welcome from "./pages/Welcome";
+import { SpotifyService } from "./api/SpotifyService";
 
 interface StateType {
   auth: boolean;
@@ -20,8 +21,10 @@ class App extends React.Component<any, StateType> {
   }
 
   async getAuth() {
-    if (await AuthUtils.getAuth()) {
+    if (await AuthUtils.getToken()) {
       this.setState({ auth: true });
+    } else {
+      SpotifyService.onLoad();
     }
   }
 

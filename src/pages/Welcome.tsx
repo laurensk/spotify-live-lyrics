@@ -1,4 +1,5 @@
 import React from "react";
+import { SpotifyService } from "../api/SpotifyService";
 import Container from "../components/Container";
 import CustomButton from "../components/CustomButton";
 import Header from "../components/Header";
@@ -6,7 +7,7 @@ import LargeText from "../components/LargeText";
 
 class Welcome extends React.Component {
   login() {
-    alert("ok login");
+    SpotifyService.login();
   }
 
   render() {

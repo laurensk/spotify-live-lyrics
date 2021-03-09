@@ -1,7 +1,18 @@
 export class AuthUtils {
-  public static async setAuth(token: string) {}
+  public static setToken(token: string) {
+    localStorage.setItem("token", token);
+  }
 
-  public static async getAuth(): Promise<boolean> {
-    return false;
+  public static getToken() {
+    const token = localStorage.getItem("token");
+    return token ? token : null;
+  }
+
+  public static removeToken() {
+    return localStorage.removeItem("token");
+  }
+
+  public static reload() {
+    window.location.reload();
   }
 }
