@@ -1,4 +1,5 @@
 import React from "react";
+import { LyricsService } from "../api/LyricsService";
 import { SpotifyService } from "../api/SpotifyService";
 import Container from "../components/Container";
 import CustomButton from "../components/CustomButton";
@@ -8,6 +9,7 @@ import { SongUtils } from "../utils/SongUtils";
 
 interface StateType {
   song: any | undefined;
+  lyrics: any | undefined;
 }
 
 class Player extends React.Component<any, StateType> {
@@ -17,6 +19,7 @@ class Player extends React.Component<any, StateType> {
     super(props);
     this.state = {
       song: null,
+      lyrics: null,
     };
   }
 
@@ -30,9 +33,20 @@ class Player extends React.Component<any, StateType> {
   }
 
   async getCurrentSong() {
+    const lastSong = this.state.song;
     const song = await SpotifyService.getCurrentSong();
     if (song) {
       this.setState({ song: song });
+
+      if (lastSong == null || lastSong.item.name != song.item.name) {
+        LyricsService.getLyrics(
+          this.state.song.item.name,
+          SongUtils.getArtists(this.state.song.item.artists),
+          (lyrics: string) => {
+            if (lyrics) this.setState({ lyrics: lyrics });
+          }
+        );
+      }
     }
   }
 
@@ -43,22 +57,10 @@ class Player extends React.Component<any, StateType> {
         {this.state.song && (
           <div style={{ marginTop: -15 }}>
             <LargeText text={SongUtils.getArtists(this.state.song.item.artists)} />
+            <br />
+            <LargeText text={this.state.lyrics} />
           </div>
         )}
-
-        {/* <LargeText text="Welcome to Spotify Live Lyrics." />
-        <br />
-        <LargeText
-          text={
-            "To get stared, you need to log in with your Spotify account in order to let the application know, which song you're currently listening to. No, worries, we never log or save this data."
-          }
-        />
-        <br />
-        <LargeText text="In fact, this project is open-sourced and the code can be seen on GitHub." />
-        <br />
-        <LargeText fontWeight={"600"} text="To get started with Spotify Live Lyrics, please log in!" />
-        <br />
-        <CustomButton title="Log in with Spotify" onClick={() => this.login()} /> */}
       </Container>
     );
   }

@@ -12,6 +12,7 @@
     "@types/react-dom": "^17.0.2",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
+    "genius-lyrics-api": "^3.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
