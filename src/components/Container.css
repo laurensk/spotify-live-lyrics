@@ -1,0 +1,14 @@
+.sll-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 4em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.sll-container-children {
+  width: 60em;
+  max-width: 60em;
+  display: flex;
+  flex-direction: column;
+}

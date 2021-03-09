@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { AuthUtils } from "./utils/AuthUtils";
+import Player from "./pages/Player";
+import Welcome from "./pages/Welcome";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface StateType {
+  auth: boolean;
+}
+
+class App extends React.Component<any, StateType> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      auth: false,
+    };
+  }
+
+  componentDidMount() {
+    this.getAuth();
+  }
+
+  async getAuth() {
+    if (await AuthUtils.getAuth()) {
+      this.setState({ auth: true });
+    }
+  }
+
+  render() {
+    return this.state.auth ? <Player /> : <Welcome />;
+  }
 }
 
 export default App;

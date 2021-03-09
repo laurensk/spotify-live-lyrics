@@ -1,0 +1,22 @@
+.sll-button {
+  margin-top: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
+  width: fit-content;
+  height: 3.5em;
+  border-radius: 25px;
+  border: none;
+  background-color: #1cb955;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.sll-button:hover {
+  cursor: pointer;
+  background-color: #1bd760;
+}
