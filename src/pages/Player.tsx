@@ -52,6 +52,10 @@ class Player extends React.Component<any, StateType> {
     }
   }
 
+  openLyrics(url: string) {
+    window.open(url, "_blank");
+  }
+
   render() {
     return (
       <Container>
@@ -60,7 +64,8 @@ class Player extends React.Component<any, StateType> {
           <div style={{ marginTop: -15 }}>
             <LargeText text={SongUtils.getArtists(this.state.song.item.artists)} />
             <br />
-            <LargeText text={this.state.lyrics} />
+            {/* <LargeText text={this.state.lyrics} /> */}
+            <CustomButton title="Open Lyrics on Genius" onClick={() => this.openLyrics(this.state.lyrics)} />
           </div>
         )}
       </Container>
