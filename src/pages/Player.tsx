@@ -10,6 +10,8 @@ interface StateType {
 }
 
 class Player extends React.Component<any, StateType> {
+  updateInterval: any;
+
   constructor(props: any) {
     super(props);
     this.state = {
@@ -19,6 +21,11 @@ class Player extends React.Component<any, StateType> {
 
   componentDidMount() {
     this.getCurrentSong();
+    this.updateInterval = setInterval(() => this.getCurrentSong(), 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.updateInterval);
   }
 
   async getCurrentSong() {
