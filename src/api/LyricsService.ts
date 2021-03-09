@@ -1,14 +1,17 @@
+import axios from "axios";
 import { getLyrics } from "genius-lyrics-api";
 
 export class LyricsService {
   public static getLyrics(title: string, artist: string, callback: Function) {
     const options = {
-      apiKey: "g7JzjyslNgesF23kdiRhZH9hsG9GjaTHHgil5qwq1-sUImsNwNLFjRyuokwv9bcy",
+      apiKey: "jklIWOS5zp1xoyszijpeb_nuZbJ4eWXwByqaSemhq9TNJG2SuN3qgCXXN5UKcASH",
       title: title,
       artist: artist,
       optimizeQuery: true,
     };
 
-    getLyrics(options).then((lyrics: any) => callback(lyrics));
+    callback("...");
+
+    //getLyrics(options).then((lyrics: any) => callback(lyrics));
   }
 }

@@ -47,6 +47,8 @@ class Player extends React.Component<any, StateType> {
           }
         );
       }
+    } else {
+      this.setState({ song: null });
     }
   }
 
