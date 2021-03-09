@@ -14,7 +14,7 @@ export class SpotifyService {
   private static getTokenFromUrl() {
     const href = window.location.href;
     const container = href.split("access_token=");
-    if (container.length < 1) return false;
+    if (container.length < 2) return false;
     const token = container[1].split("&");
     if (token.length < 1) return false;
     return token[0];
