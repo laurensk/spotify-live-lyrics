@@ -13,6 +13,7 @@ export class AuthUtils {
   }
 
   public static reload() {
-    window.location.reload();
+    if (window.location.href.split("#").length <= 2) window.location.href = window.location.href.split("#")[0];
+    setTimeout(() => window.location.reload(), 10);
   }
 }

@@ -7,6 +7,7 @@ export class SpotifyService {
     console.log(token);
     if (token) {
       AuthUtils.setToken(token.toString());
+      console.log("motherfucker");
       AuthUtils.reload();
     }
   }
