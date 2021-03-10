@@ -35,15 +35,18 @@ export class SpotifyService {
   }
 
   public static async getCurrentSong() {
-    const res = await axios.get("https://api.spotify.com/v1/me/player/currently-playing", {
-      headers: { Authorization: "Bearer " + AuthUtils.getToken() },
-    });
-    if (res.status === 401) {
-      AuthUtils.removeToken();
-      AuthUtils.reload();
-      return null;
+    try {
+      const res = await axios.get("https://api.spotify.com/v1/me/player/currently-playing", {
+        headers: { Authorization: "Bearer " + AuthUtils.getToken() },
+      });
+      return res.data;
+    } catch (e) {
+      if (e.response.status) {
+        if (e.response.status === 401) {
+          AuthUtils.removeToken();
+          AuthUtils.reload();
+        }
+      }
     }
-    if (res.status !== 200) return null;
-    return res.data;
   }
 }
