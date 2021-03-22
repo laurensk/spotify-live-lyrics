@@ -51,8 +51,11 @@ class Player extends React.Component<any, StateType> {
     }
   }
 
-  openLyrics(url: string) {
-    window.open(url, "_blank");
+  openLyrics() {
+    window.open(
+      LyricsService.openLyrics(this.state.song.item.name, SongUtils.getArtists(this.state.song.item.artists)),
+      "_blank"
+    );
   }
 
   render() {
@@ -67,7 +70,7 @@ class Player extends React.Component<any, StateType> {
             <CustomButton
               style={{ marginTop: 40, marginBottom: 70 }}
               title="Open Lyrics on Genius"
-              onClick={() => this.openLyrics(this.state.lyrics)}
+              onClick={() => this.openLyrics()}
             />
           </div>
         )}

@@ -19,4 +19,18 @@ export class LyricsService {
       return this.lyricsRequest(title, artist, count + 1);
     }
   }
+
+  public static openLyrics(title: string, artist: string) {
+    const search = `${title} ${artist}`
+      .toLowerCase()
+      .replace(/ *\([^)]*\) */g, "")
+      .replace(/ *\[[^\]]*]/, "")
+      .replace(/feat.|ft./g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    const urlSearch = encodeURI(search);
+
+    return "https://genius.com/search?q=" + urlSearch;
+  }
 }
