@@ -10,8 +10,7 @@ export class LyricsService {
     if (count > 4) return null;
 
     const headers = { Authorization: "Bearer b6fbac76-2ac3-4187-a662-7d9a3f67b346" };
-    //const endpoint = "https://lyrics.prod.laurensk.at/lyrics";
-    const endpoint = "http://localhost:3001/lyrics";
+    const endpoint = "https://lyrics.prod.laurensk.at/lyrics";
 
     try {
       const res = await axios.post(endpoint, { title: title, artist: artist }, { headers: headers });
