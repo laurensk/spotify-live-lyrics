@@ -38,14 +38,13 @@ class Player extends React.Component<any, StateType> {
     if (song) {
       this.setState({ song: song });
 
-      if (lastSong == null || lastSong.item.name != song.item.name) {
-        LyricsService.getLyrics(
+      if (lastSong == null || lastSong.item.name !== song.item.name) {
+        this.setState({ lyrics: null });
+        const lyrics = await LyricsService.getLyrics(
           this.state.song.item.name,
-          SongUtils.getArtists(this.state.song.item.artists),
-          (lyrics: string) => {
-            if (lyrics) this.setState({ lyrics: lyrics });
-          }
+          SongUtils.getArtists(this.state.song.item.artists)
         );
+        if (lyrics) this.setState({ lyrics: "\n" + lyrics.trim() });
       }
     } else {
       this.setState({ song: null });
@@ -64,8 +63,12 @@ class Player extends React.Component<any, StateType> {
           <div style={{ marginTop: -15 }}>
             <LargeText text={SongUtils.getArtists(this.state.song.item.artists)} />
             <br />
-            {/* <LargeText text={this.state.lyrics} /> */}
-            <CustomButton title="Open Lyrics on Genius" onClick={() => this.openLyrics(this.state.lyrics)} />
+            <LargeText text={this.state.lyrics} />
+            <CustomButton
+              style={{ marginTop: 40, marginBottom: 70 }}
+              title="Open Lyrics on Genius"
+              onClick={() => this.openLyrics(this.state.lyrics)}
+            />
           </div>
         )}
       </Container>

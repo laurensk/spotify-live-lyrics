@@ -1,28 +1,23 @@
 import axios from "axios";
-import { getLyrics } from "genius-lyrics-api";
 
 export class LyricsService {
-  public static getLyrics(title: string, artist: string, callback: Function) {
-    // const options = {
-    //   apiKey: "jklIWOS5zp1xoyszijpeb_nuZbJ4eWXwByqaSemhq9TNJG2SuN3qgCXXN5UKcASH",
-    //   title: title,
-    //   artist: artist,
-    //   optimizeQuery: true,
-    // };
+  public static async getLyrics(title: string, artist: string) {
+    return await this.lyricsRequest(title, artist, 0);
+  }
 
-    // callback("...");
+  private static async lyricsRequest(title: string, artist: string, count: number): Promise<string | null> {
+    console.log("getting lyrics!");
+    if (count > 4) return null;
 
-    //getLyrics(options).then((lyrics: any) => callback(lyrics));
-    const search = `${title} ${artist}`
-      .toLowerCase()
-      .replace(/ *\([^)]*\) */g, "")
-      .replace(/ *\[[^\]]*]/, "")
-      .replace(/feat.|ft./g, "")
-      .replace(/\s+/g, " ")
-      .trim();
+    const headers = { Authorization: "Bearer b6fbac76-2ac3-4187-a662-7d9a3f67b346" };
+    //const endpoint = "https://lyrics.prod.laurensk.at/lyrics";
+    const endpoint = "http://localhost:3001/lyrics";
 
-    const urlSearch = encodeURI(search);
-
-    callback("https://genius.com/search?q=" + urlSearch);
+    try {
+      const res = await axios.post(endpoint, { title: title, artist: artist }, { headers: headers });
+      return res.status === 200 ? res.data : this.lyricsRequest(title, artist, count + 1);
+    } catch {
+      return this.lyricsRequest(title, artist, count + 1);
+    }
   }
 }
