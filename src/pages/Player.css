@@ -1,0 +1,41 @@
+.sll-player-background {
+  min-height: 100vh;
+}
+
+.sll-player-meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sll-player-cover {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+
+  -webkit-box-shadow: 5px 5px 15px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 5px 5px 15px 4px rgba(0, 0, 0, 0.15);
+}
+
+.sll-player-song {
+  margin-left: 2em;
+}
+
+.sll-player-title {
+  margin-top: 16px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.sll-player-artist {
+  margin-top: -16px;
+}
+
+.sll-player-lyrics {
+  height: 72vh;
+  overflow: scroll;
+  margin-top: 1em;
+  white-space: pre-line;
+  font-weight: bold;
+  font-size: 25px;
+}

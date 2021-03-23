@@ -15,6 +15,7 @@
     "genius-lyrics-api": "^3.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
     "react-scripts": "4.0.3",
     "typescript": "^4.2.3",
     "web-vitals": "^1.1.0"
@@ -45,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-helmet": "^6.1.0",
     "gh-pages": "^3.1.0"
   }
 }
