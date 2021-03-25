@@ -38,4 +38,7 @@
   white-space: pre-line;
   font-weight: bold;
   font-size: 25px;
+
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
